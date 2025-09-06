@@ -45,6 +45,11 @@
       position: relative;
       z-index: 1;
     }
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
     .hero .slide {
       position: absolute;
       top: 0;
@@ -120,9 +125,6 @@
         height: 35px;
       }
     }
-    html {
-      scroll-behavior: smooth;
-    }
   </style>
 </head>
 <body>
@@ -134,7 +136,7 @@
       <a href="#contact">Contact</a>
       <select name="languages" onchange="location = this.value;">
         <option value="">Select language</option>
-        <option value="index.html">Română</option>
+        <option value="TeleVox.html">Română</option>
         <option value="TeleVoxM.html">Magyar</option>
       </select>
     </nav>
@@ -180,23 +182,18 @@
     const images = ["slide1.jpg", "slide2.jpg", "slide3.jpg"];
     let current = 0;
 
-    // létrehozza az összes .slide div-et
+    // slide div-ek létrehozása innerHTML +=-vel
     images.forEach((img, i) => {
-      const div = document.createElement('div');
-      div.classList.add('slide');
-      div.style.backgroundImage = `url(${img})`;
-      div.style.opacity = i === 0 ? '1' : '0';
-      hero.appendChild(div);
+      hero.innerHTML += `<div class="slide" style="background-image:url(${img}); opacity:${i===0?1:0};"></div>`;
     });
 
     const slides = hero.querySelectorAll('.slide');
 
     setInterval(() => {
-      slides[current].style.opacity = 0;           // aktuális kép eltűnik
-      current = (current + 1) % slides.length;     // következő kép index
-      slides[current].style.opacity = 1;           // következő kép látható
+      slides[current].style.opacity = 0;
+      current = (current + 1) % slides.length;
+      slides[current].style.opacity = 1;
     }, 5000);
   </script>
 </body>
 </html>
-
