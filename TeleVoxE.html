@@ -6,122 +6,120 @@
   <title>Televox</title>
   <style>
     body {
-		margin: 0;
-		font-family: Times New Roman, sans-serif;
-		background: #f9f9f9;
-		color: #333; 
-	}
-    header {
-		background: #0378e4;
-		color: white;
-		padding: 1rem 2rem;
-		display: flex; 
-		justify-content: space-between;
-		align-items: center;
-		}
-    header h1 {
-		margin: 0;
-		font-size: 1.5rem; 
-		}
-	header img {
-		height: 50px;
-		width: auto;
-		max-width:100%
-		}
-    nav a { 
-        color: white; 
-		margin-left: 1rem;
-		text-decoration: none; 
-		font-weight: bold;
-		}
-    .hero {
-		position: relative;
-		height: 80vh;
-		color: white;
-		text-align: center;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		overflow: hidden;
-		
-		background-size: cover;
-		background-position: center;
-		background-repeat: no-repeat;
-		background-image: url('slide1.jpg'); /* first image */
-		transition: opacity 1s ease-in-out;
+      margin: 0;
+      font-family: Times New Roman, sans-serif;
+      background: #f9f9f9;
+      color: #333;
     }
-
-    .hero h2 { 
-		font-size: 2.5rem;
-		margin-bottom: 1rem;
-		}
+    header {
+      background: #0378e4;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header img {
+      height: 50px;
+      width: auto;
+      max-width: 100%;
+    }
+    nav a {
+      color: white;
+      margin-left: 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .hero {
+      position: relative;
+      height: 80vh;
+      color: white;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero h2, .hero p, .hero .cta-btn {
+      position: relative;
+      z-index: 1;
+    }
+    .hero .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
     .services {
-		display: flex;
-		justify-content: space-around;
-		padding: 3rem 2rem;
-		background: white; 
-		}
+      display: flex;
+      justify-content: space-around;
+      padding: 3rem 2rem;
+      background: white;
+    }
     .service {
-		width: 30%; 
-		text-align: center;
-		}
-    .service h3 { 
-		color: #004080;
-		}
+      width: 30%;
+      text-align: center;
+    }
+    .service h3 {
+      color: #004080;
+    }
     .contact {
-		padding: 3rem 2rem; 
-		background: #e6f0ff; 
-		}
-    .contact form { 
-		max-width: 500px; 
-		margin: auto; 
-		display: flex;
-		flex-direction: column;
-		gap: 1rem; 
+      padding: 3rem 2rem;
+      background: #e6f0ff;
+    }
+    .contact form {
+      max-width: 500px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
     .contact input, .contact textarea {
-		padding: 0.8rem;
-		border: 1px solid #ccc;
-		border-radius: 5px; 
-		}
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
     .contact button {
-		background: #004080; 
-		color: white; 
-		border: none; 
-		padding: 1rem; 
-		border-radius: 5px;
-		cursor: pointer;
-		}
+      background: #004080;
+      color: white;
+      border: none;
+      padding: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
     footer {
-		background: #00264d;
-		color: white;
-		text-align: center;
-		padding: 1rem;
-		margin-top: 2rem;
-		}
-	.cta-btn {
-		display: inline-block;
-		background: red;
-		color: black;
-		text-decoration: none;
-		padding: 1rem 2rem;
-		font-size: 1rem;
-		border-radius: 5px;
-		cursor: pointer;
-		font-weight: bold;
-		transition: background 0.3s;
-		}
-
-	.cta-btn:hover {
-		background: white;
-		}
-
-	@media (max-width: 600px) {
-	  .logo {
-		height: 35px;
-	  }
-	}
+      background: #00264d;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: red;
+      color: black;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .cta-btn:hover {
+      background: white;
+    }
+    @media (max-width: 600px) {
+      .logo {
+        height: 35px;
+      }
+    }
     html {
       scroll-behavior: smooth;
     }
@@ -134,28 +132,13 @@
       <a href="#">Home</a>
       <a href="#services">Services</a>
       <a href="#contact">Contact</a>
-	  <select name="languages" onchange="location = this.value;">
-		<option value="">Select language</option>
-		<option value="TeleVox.html">Română</option>
-		<option value="TeleVoxM.html">Magyar</option>
-	  </select>
+      <select name="languages" onchange="location = this.value;">
+        <option value="">Select language</option>
+        <option value="TeleVox.html">Română</option>
+        <option value="TeleVoxM.html">Magyar</option>
+      </select>
     </nav>
   </header>
-
-  <script>
-	const hero = document.querySelector('.hero');
-	const images = [
-		"slide1.jpg",
-		"slide2.jpg",
-		"slide3.jpg"
-	];
-	let index = 0;
-
-	setInterval(() => {
-		index = (index + 1) % images.length;
-		document.querySelector(".hero").style.setProperty("background-image", `url(${images[index]})`);
-	}, 5000);
-  </script>
 
   <section class="hero">
     <h2>Choose integrated solutions</h2>
@@ -183,7 +166,7 @@
     <form action="https://formspree.io/f/xeolvoor" method="POST">
       <input type="text" name="name" placeholder="Name" required>
       <input type="email" name="email" placeholder="Email" required>
-      <textarea name="message" rows="5" placeholder="Messsage" required></textarea>
+      <textarea name="message" rows="5" placeholder="Message" required></textarea>
       <button type="submit">Send</button>
     </form>
   </section>
@@ -191,5 +174,28 @@
   <footer>
     <p>© 2025 Televox | Email: lorantd@televoxsa.com | Tel: +40 441 607 907</p>
   </footer>
+
+  <script>
+    const hero = document.querySelector('.hero');
+    const images = ["slide1.jpg", "slide2.jpg", "slide3.jpg"];
+    let current = 0;
+
+    // létrehozza az összes .slide div-et
+    images.forEach((img, i) => {
+      const div = document.createElement('div');
+      div.classList.add('slide');
+      div.style.backgroundImage = `url(${img})`;
+      div.style.opacity = i === 0 ? '1' : '0';
+      hero.appendChild(div);
+    });
+
+    const slides = hero.querySelectorAll('.slide');
+
+    setInterval(() => {
+      slides[current].style.opacity = 0;           // aktuális kép eltűnik
+      current = (current + 1) % slides.length;     // következő kép index
+      slides[current].style.opacity = 1;           // következő kép látható
+    }, 5000);
+  </script>
 </body>
 </html>
