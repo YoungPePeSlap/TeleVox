@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Televox</title>
+  <style>
+    body {
+		margin: 0;
+		font-family: Times New Roman, sans-serif;
+		background: #f9f9f9;
+		color: #333; 
+	}
+    header {
+		background: #0378e4;
+		color: white;
+		padding: 1rem 2rem;
+		display: flex; 
+		justify-content: space-between;
+		align-items: center;
+		}
+    header h1 {
+		margin: 0;
+		font-size: 1.5rem; 
+		}
+	header img {
+		height: 50px;
+		width: auto;
+		max-width:100%
+		}
+    nav a { 
+        color: white; 
+		margin-left: 1rem;
+		text-decoration: none; 
+		font-weight: bold;
+		}
+    .hero {
+		position: relative;
+		height: 80vh;
+		color: white;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;
+		
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-image: url('slide1.jpg'); /* first image */
+		transition: opacity 1s ease-in-out;
+    }
+
+    .hero h2 { 
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+		}
+    .services {
+		display: flex;
+		justify-content: space-around;
+		padding: 3rem 2rem;
+		background: white; 
+		}
+    .service {
+		width: 30%; 
+		text-align: center;
+		}
+    .service h3 { 
+		color: #004080;
+		}
+    .contact {
+		padding: 3rem 2rem; 
+		background: #e6f0ff; 
+		}
+    .contact form { 
+		max-width: 500px; 
+		margin: auto; 
+		display: flex;
+		flex-direction: column;
+		gap: 1rem; 
+    }
+    .contact input, .contact textarea {
+		padding: 0.8rem;
+		border: 1px solid #ccc;
+		border-radius: 5px; 
+		}
+    .contact button {
+		background: #004080; 
+		color: white; 
+		border: none; 
+		padding: 1rem; 
+		border-radius: 5px;
+		cursor: pointer;
+		}
+    footer {
+		background: #00264d;
+		color: white;
+		text-align: center;
+		padding: 1rem;
+		margin-top: 2rem;
+		}
+	.cta-btn {
+		display: inline-block;
+		background: red;
+		color: black;
+		text-decoration: none;
+		padding: 1rem 2rem;
+		font-size: 1rem;
+		border-radius: 5px;
+		cursor: pointer;
+		font-weight: bold;
+		transition: background 0.3s;
+		}
+
+	.cta-btn:hover {
+		background: white;
+		}
+
+	@media (max-width: 600px) {
+	  .logo {
+		height: 35px;
+	  }
+	}
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="Televox.png" alt="Televox logo">
+    <nav>
+      <a href="#">Home</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+	  <select name="languages" onchange="location = this.value;">
+		<option value="">Select language</option>
+		<option value="TeleVox.html">Română</option>
+		<option value="TeleVoxM.html">Magyar</option>
+	  </select>
+    </nav>
+  </header>
+
+  <script>
+	const hero = document.querySelector('.hero');
+	const images = [
+		"slide1.jpg",
+		"slide2.jpg",
+		"slide3.jpg"
+	];
+	let index = 0;
+
+	setInterval(() => {
+		index = (index + 1) % images.length;
+		document.querySelector(".hero").style.setProperty("background-image", `url(${images[index]})`);
+	}, 5000);
+  </script>
+
+  <section class="hero">
+    <h2>Choose integrated solutions</h2>
+    <p>Reliable telecommunications solutions for everyone.</p>
+    <a href="#contact" class="cta-btn">Contact us</a>
+  </section>
+
+  <section id="services" class="services">
+    <div class="service">
+      <h3>Internet</h3>
+      <p>Fast and stable internet connection for home and business.</p>
+    </div>
+    <div class="service">
+      <h3>Phone</h3>
+      <p>Reliable phone lines with affordable rates.</p>
+    </div>
+    <div class="service">
+      <h3>Customer Service</h3>
+      <p>Friendly customer support, available whenever you need it.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact</h2>
+    <form action="TeleVox.php" method="POST">
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="message" rows="5" placeholder="Messsage" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 Televox | Email: lorantd@televoxsa.com | Tel: +40 441 607 907</p>
+  </footer>
+</body>
+</html>
