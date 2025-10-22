@@ -5,31 +5,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Televox</title>
   <style>
+    :root{
+      --header-height: 64px;
+      --primary: #0378e4;
+      --accent: #004080;
+      --dark: #00264d;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      font-family: Times New Roman, sans-serif;
+      font-family: "Times New Roman", serif;
       background: #f9f9f9;
       color: #333;
+      padding-top: var(--header-height);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
+
     header {
-      background: #0378e4;
+      background: var(--primary);
       color: white;
-      padding: 1rem 2rem;
+      padding: 0 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--header-height);
+      z-index: 1000;
     }
-    header img {
-      height: 50px;
+
+    header img.logo {
+      height: 48px;
       width: auto;
-      max-width:100%;
+      max-width: 100%;
+      display: block;
     }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
     nav a {
       color: white;
-      margin-left: 1rem;
       text-decoration: none;
       font-weight: bold;
+      margin-left: 0.5rem;
     }
+
+    nav select {
+      padding: 0.25rem;
+      border-radius: 4px;
+      border: none;
+      background: rgba(255,255,255,0.12);
+      color: white;
+    }
+
     .hero {
       position: relative;
       height: 80vh;
@@ -41,43 +78,54 @@
       align-items: center;
       overflow: hidden;
     }
-    .hero h2, .hero p, .hero .cta-btn {
-      position: relative;
-      z-index: 1;
-    }
+
+    .hero .hero-content { position: relative; z-index: 2; padding: 0 1rem; }
+
     .hero h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      line-height: 1.2;
+      font-size: 2.2rem;
+      margin: 0 0 1rem;
     }
+
+    .hero p { margin: 0 0 1.25rem; }
+
     .hero .slide {
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      right: 0;
+      bottom: 0;
       background-size: cover;
       background-position: center;
-      opacity: 0;
       transition: opacity 1s ease-in-out;
+      opacity: 0;
+      z-index: 1;
     }
+
     .services {
       display: flex;
       justify-content: space-around;
       padding: 3rem 2rem;
       background: white;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
+
     .service {
-      width: 30%;
+      flex: 1 1 240px;
+      max-width: 33%;
       text-align: center;
+      min-width: 220px;
     }
+
     .service h3 {
-      color: #004080;
+      color: var(--accent);
     }
+
     .contact {
       padding: 3rem 2rem;
       background: #e6f0ff;
     }
+
     .contact form {
       max-width: 500px;
       margin: auto;
@@ -85,70 +133,84 @@
       flex-direction: column;
       gap: 1rem;
     }
+
     .contact input, .contact textarea {
       padding: 0.8rem;
       border: 1px solid #ccc;
       border-radius: 5px;
+      font: inherit;
     }
+
     .contact button {
-      background: #004080;
+      background: var(--accent);
       color: white;
       border: none;
       padding: 1rem;
       border-radius: 5px;
       cursor: pointer;
+      font-weight: bold;
     }
+
     footer {
-      background: #00264d;
+      background: var(--dark);
       color: white;
       text-align: center;
       padding: 1rem;
       margin-top: 2rem;
     }
+
     .cta-btn {
       display: inline-block;
-      background: red;
-      color: black;
+      background: #e60000;
+      color: white;
       text-decoration: none;
-      padding: 1rem 2rem;
+      padding: 0.9rem 1.6rem;
       font-size: 1rem;
       border-radius: 5px;
       cursor: pointer;
       font-weight: bold;
-      transition: background 0.3s;
+      transition: background 0.2s ease;
     }
+
     .cta-btn:hover {
-      background: white;
+      background: #c40000;
     }
+
+    @media (max-width: 900px) {
+      .service { max-width: 45%; }
+    }
+
     @media (max-width: 600px) {
-      .logo {
-        height: 35px;
-      }
+      .logo { height: 35px; }
+      .hero h2 { font-size: 1.6rem; }
+      .service { max-width: 100%; }
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="Televox.png" alt="Televox logó">
+    <img src="Televox.png" alt="Televox logó" class="logo">
     <nav>
       <a href="#">Kezdőlap</a>
       <a href="#services">Szolgáltatások</a>
       <a href="#contact">Kapcsolat</a>
-      <select name="languages" onchange="location = this.value;">
-        <option value="">Válasszon nyelvet</option>
+      <select name="languages" onchange="if (this.value) location = this.value;">
+        <option value="" disabled selected>Válasszon nyelvet</option>
         <option value="index.html">Română</option>
         <option value="TeleVoxE.html">English</option>
       </select>
     </nav>
   </header>
 
-  <section class="hero">
-    <h2>Válassza az integrált megoldásokat</h2>
-    <p>Megbízható távközlési megoldások mindenkinek.</p>
-    <a href="#contact" class="cta-btn">Lépjen kapcsolatba velünk</a>
+  <section class="hero" aria-label="Hero">
+    <div class="hero-content">
+      <h2>Válassza az integrált megoldásokat</h2>
+      <p>Megbízható távközlési megoldások mindenkinek.</p>
+      <a href="#contact" class="cta-btn">Lépjen kapcsolatba velünk</a>
+    </div>
   </section>
 
-  <section id="services" class="services">
+  <section id="services" class="services" aria-label="Szolgáltatások">
     <div class="service">
       <h3>Internet</h3>
       <p>Gyors és stabil internetkapcsolat otthonra és vállalkozásoknak.</p>
@@ -163,7 +225,7 @@
     </div>
   </section>
 
-  <section id="contact" class="contact">
+  <section id="contact" class="contact" aria-label="Kapcsolat">
     <h2>Kapcsolat</h2>
     <form action="https://formspree.io/f/xeolvoor" method="POST">
       <input type="text" name="name" placeholder="Név" required>
@@ -178,29 +240,37 @@
   </footer>
 
   <script>
-    const hero = document.querySelector('.hero');
-    const images = ["slide1.jpg", "slide2.png", "slide4.jpg", "slide3.png"];
-    let current = 0;
+    (function() {
+      const hero = document.querySelector('.hero');
+      if (!hero) return;
 
-    // minden képhez létrehozunk egy slide div-et a hero belsejébe innerHTML +=-vel
-    images.forEach((img, i) => {
-      hero.innerHTML += `<div class="slide" style="background-image:url(${img}); opacity:${i===0?1:0};"></div>`;
-    });
+      const images = ["slide1.jpg", "slide2.png", "slide4.jpg", "slide3.png"];
 
-    const slides = hero.querySelectorAll('.slide');
+      const slides = [];
+      images.forEach((img, i) => {
+        const slide = document.createElement('div');
+        slide.className = 'slide';
+        slide.style.backgroundImage = `url(${img})`;
+        slide.style.opacity = i === 0 ? '1' : '0';
+        hero.appendChild(slide);
+        slides.push(slide);
 
-    setInterval(() => {
-      slides[current].style.opacity = 0;
-      current = (current + 1) % slides.length;
-      slides[current].style.opacity = 1;
-    }, 5000);
+        const pre = new Image();
+        pre.src = img;
+      });
+
+      if (slides.length === 0) return;
+      let current = 0;
+      const duration = 5000;
+
+      if (slides.length > 1) {
+        setInterval(() => {
+          slides[current].style.opacity = '0';
+          current = (current + 1) % slides.length;
+          slides[current].style.opacity = '1';
+        }, duration);
+      }
+    })();
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
