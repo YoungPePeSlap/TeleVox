@@ -27,7 +27,7 @@
     header {
       background: var(--primary);
       color: white;
-      padding: 0 2rem;
+      padding: 0 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -39,11 +39,6 @@
       z-index: 1000;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 1.25rem;
-    }
-
     header img.logo {
       height: 48px;
       width: auto;
@@ -52,6 +47,12 @@
     }
 
     nav {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-menu {
       display: flex;
       align-items: center;
       gap: 0.75rem;
@@ -93,6 +94,36 @@
     nav select:focus {
       box-shadow: 0 0 0 3px rgba(3,120,228,0.18);
     }
+
+    .nav-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      color: white;
+      padding: 0.25rem;
+      cursor: pointer;
+      margin-left: 0.5rem;
+    }
+
+    .nav-toggle .hamburger {
+      width: 24px;
+      height: 2px;
+      background: white;
+      display: block;
+      position: relative;
+    }
+    .nav-toggle .hamburger::before,
+    .nav-toggle .hamburger::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 24px;
+      height: 2px;
+      background: white;
+      display: block;
+    }
+    .nav-toggle .hamburger::before { top: -7px; }
+    .nav-toggle .hamburger::after { top: 7px; }
 
     .hero {
       position: relative;
@@ -212,6 +243,40 @@
       .logo { height: 35px; }
       .hero h2 { font-size: 1.6rem; }
       .service { max-width: 100%; }
+
+      .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
+
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: var(--header-height);
+        right: 0;
+        left: 0;
+        background: var(--primary);
+        padding: 0.75rem 1rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: stretch;
+      }
+
+      .nav-menu.open {
+        display: flex;
+      }
+
+      .nav-menu a {
+        display: block;
+        padding: 0.5rem 0.25rem;
+      }
+
+      .nav-menu select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.5rem;
+        margin-top: 0.25rem;
+        background: #fff;
+        color: #000;
+        font-weight: normal;
+      }
     }
   </style>
 </head>
@@ -219,14 +284,20 @@
   <header>
     <img src="Televox.png" alt="Televox logo" class="logo">
     <nav>
-      <a href="#">Acasă</a>
-      <a href="#services">Servicii</a>
-      <a href="#contact">Contact</a>
-      <select name="languages" aria-label="Select language" onchange="if (this.value) location = this.value;">
-        <option value="" disabled selected>Select Language</option>
-        <option value="TeleVoxM.html">Magyar</option>
-        <option value="TeleVoxE.html">English</option>
-      </select>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">
+        <span class="hamburger" aria-hidden="true"></span>
+      </button>
+
+      <div id="nav-menu" class="nav-menu" role="menu">
+        <a href="#" role="menuitem">Acasă</a>
+        <a href="#services" role="menuitem">Servicii</a>
+        <a href="#contact" role="menuitem">Contact</a>
+        <select name="languages" aria-label="Select language" onchange="if (this.value) location = this.value;">
+          <option value="" disabled selected>Select Language</option>
+          <option value="TeleVoxM.html">Magyar</option>
+          <option value="TeleVoxE.html">English</option>
+        </select>
+      </div>
     </nav>
   </header>
 
@@ -270,37 +341,45 @@
   <script>
     (function() {
       const hero = document.querySelector('.hero');
-      if (!hero) return;
+      if (hero) {
+        const images = ["slide1.jpg", "slide2.png", "slide4.jpg", "slide3.png"];
+        const slides = [];
+        images.forEach((img, i) => {
+          const slide = document.createElement('div');
+          slide.className = 'slide';
+          slide.style.backgroundImage = `url(${img})`;
+          slide.style.opacity = i === 0 ? '1' : '0';
+          hero.appendChild(slide);
+          slides.push(slide);
+          const pre = new Image();
+          pre.src = img;
+        });
+        if (slides.length > 1) {
+          let current = 0;
+          const duration = 5000;
+          setInterval(() => {
+            slides[current].style.opacity = '0';
+            current = (current + 1) % slides.length;
+            slides[current].style.opacity = '1';
+          }, duration);
+        }
+      }
 
-      const images = ["slide1.jpg", "slide2.png", "slide4.jpg", "slide3.png"];
+      const toggle = document.querySelector('.nav-toggle');
+      const menu = document.getElementById('nav-menu');
+      if (toggle && menu) {
+        toggle.addEventListener('click', () => {
+          const isOpen = menu.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
 
-      // create slides using DOM API (safer than innerHTML +=)
-      const slides = [];
-      images.forEach((img, i) => {
-        const slide = document.createElement('div');
-        slide.className = 'slide';
-        slide.style.backgroundImage = `url(${img})`;
-        slide.style.opacity = i === 0 ? '1' : '0';
-        hero.appendChild(slide);
-        slides.push(slide);
-
-        // Preload image (best-effort)
-        const pre = new Image();
-        pre.src = img;
-      });
-
-      if (slides.length === 0) return;
-
-      let current = 0;
-      const duration = 5000;
-
-      // Defensive check: only set interval if there is more than one slide
-      if (slides.length > 1) {
-        setInterval(() => {
-          slides[current].style.opacity = '0';
-          current = (current + 1) % slides.length;
-          slides[current].style.opacity = '1';
-        }, duration);
+        menu.addEventListener('click', (e) => {
+          const target = e.target;
+          if (target.tagName === 'A' || (target.tagName === 'OPTION')) {
+            menu.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
+          }
+        });
       }
     })();
   </script>
