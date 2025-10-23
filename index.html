@@ -183,16 +183,23 @@
     .contact {
       padding: 3rem 2rem;
       background: #e6f0ff;
+	  display: flex;                
+	  justify-content: space-around;
+	  align-items: flex-start;
+	  flex-wrap: wrap;              
+	  gap: 2rem;
     }
 
     .contact form {
+	flex:1 1 300px;
+	max-width:500px
       max-width: 500px;
       margin: auto;
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
-
+	
     .contact input, .contact textarea {
       padding: 0.8rem;
       border: 1px solid #ccc;
@@ -209,7 +216,10 @@
       cursor: pointer;
       font-weight: bold;
     }
-
+	.contact-info{
+	flex:1 1 300px
+	max-width:400px;
+	}
     footer {
       background: var(--dark);
       color: white;
@@ -325,8 +335,16 @@
   </section>
 
   <section id="contact" class="contact" aria-label="Contact">
+	<div class="contact-info">
     <h2>Contact</h2>
+	<p><b>Adresa:</b><p/><p>Romania, Strada Gheorghe Doja Nr. 101</p>
+	<p><b>Email:</b><p/><p>lorantd@televoxsa.ro</p>
+	<p><b>Telefon:</b><p/><p>+40441607907</p>
+	<p><b>Facebook:</b><p/><a href="https://www.facebook.com/demeny.lorant"> Demény Loránt</a>
+	</div>
+	
     <form action="https://formspree.io/f/xeolvoor" method="POST">
+	<h2 style="display:flex, flex:1 text-align:top">Trimite-mi un E-mail direct:</h2>
       <input type="text" name="name" placeholder="Nume" required>
       <input type="email" name="email" placeholder="Email" required>
       <textarea name="message" rows="5" placeholder="Mesaj" required></textarea>
@@ -335,7 +353,7 @@
   </section>
 
   <footer>
-    <p>© 2025 Televox. Toate drepturile rezervate. | Email: lorantd@televoxsa.com | Tel: +40441607907</p>
+    <p>© 2025 Televox | Email: lorantd@televoxsa.ro | Tel: +40441607907</p>
   </footer>
 
   <script>
@@ -385,4 +403,3 @@
   </script>
 </body>
 </html>
-
