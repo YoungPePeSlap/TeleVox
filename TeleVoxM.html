@@ -179,16 +179,23 @@
     .contact {
       padding: 3rem 2rem;
       background: #e6f0ff;
+	  display: flex;                
+	  justify-content: space-around;
+	  align-items: flex-start;
+	  flex-wrap: wrap;              
+	  gap: 2rem;
     }
 
     .contact form {
+	flex:1 1 300px;
+	max-width:500px
       max-width: 500px;
       margin: auto;
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
-
+	
     .contact input, .contact textarea {
       padding: 0.8rem;
       border: 1px solid #ccc;
@@ -205,6 +212,11 @@
       cursor: pointer;
       font-weight: bold;
     }
+	.contact-info{
+	flex:1 1 300px
+	max-width:400px;
+	}
+   
 
     footer {
       background: var(--dark);
@@ -321,8 +333,16 @@
   </section>
 
   <section id="contact" class="contact" aria-label="Kapcsolat">
+    
+	<div class="contact-info">
     <h2>Kapcsolat</h2>
+	<p><b>Cím:</b><p/><p>Románia, Strada Gheorghe Doja Nr. 101</p>
+	<p><b>Email:</b><p/><p>lorantd@televoxsa.ro</p>
+	<p><b>Telefon:</b><p/><p>+40441607907</p>
+	<p><b>Facebook:</b><p/><a href="https://www.facebook.com/demeny.lorant"> Demény Loránt</a>
+	</div>
     <form action="https://formspree.io/f/xeolvoor" method="POST">
+	<h2 style="display:flex, flex:1 text-align:top">Küldj egy E-mail-t direktbe:</h2>
       <input type="text" name="name" placeholder="Név" required>
       <input type="email" name="email" placeholder="Email" required>
       <textarea name="message" rows="5" placeholder="Üzenet" required></textarea>
@@ -331,7 +351,7 @@
   </section>
 
   <footer>
-    <p>© 2025 Televox. Minden jog fenntartva. | E-mail: lorantd@televoxsa.com | Tel: +40 441 607 907</p>
+    <p>© 2025 Televox | E-mail: lorantd@televoxsa.com | Tel: +40 441 607 907</p>
   </footer>
 
   <script>
@@ -381,4 +401,3 @@
   </script>
 </body>
 </html>
-
