@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,7 +40,8 @@
     }
 
     header img.logo {
-      height: 48px;
+      height: 140%;
+      width: 140%;
       width: auto;
       max-width: 100%;
       display: block;
@@ -65,16 +66,15 @@
       margin-left: 0.5rem;
     }
 
-    /* Language select styles — improved contrast and cross-browser behavior */
     nav select {
       padding: 0.25rem 0.5rem;
       border-radius: 4px;
       border: none;
       background: rgba(255,255,255,0.12);
-      color: #fff;                      /* closed select (in header) shows white text */
+      color: #fff;
       font-weight: bold;
       cursor: pointer;
-      -webkit-appearance: none;         /* unify appearance across browsers */
+      -webkit-appearance: none;
       appearance: none;
       outline: none;
     }
@@ -156,6 +156,39 @@
       z-index: 1;
     }
 
+    /* Slide navigation buttons */
+    .hero .slide-controls {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 3;
+    }
+
+    .hero .slide-controls button {
+      background: rgba(0,0,0,0.4);
+      color: white;
+      border: none;
+      padding: 0.5rem 0.9rem;
+      border-radius: 50%;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .hero .slide-controls button:hover {
+      background: rgba(0,0,0,0.7);
+    }
+
+    @media (max-width: 600px) {
+      .hero .slide-controls button {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.9rem;
+      }
+    }
+
     .services {
       display: flex;
       justify-content: space-around;
@@ -175,8 +208,7 @@
     .service h3 {
       color: var(--accent);
     }
-
-    .contact {
+.contact {
       padding: 3rem 2rem;
       background: #e6f0ff;
 	  display: flex;                
@@ -290,7 +322,7 @@
 </head>
 <body>
   <header>
-    <img src="Televox.png" alt="Televox logó" class="logo">
+    <img src="logo.png" alt="Televox logo" class="logo">
     <nav>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Navigáció megnyitása">
         <span class="hamburger" aria-hidden="true"></span>
@@ -370,15 +402,31 @@
           const pre = new Image();
           pre.src = img;
         });
-        if (slides.length > 1) {
-          let current = 0;
-          const duration = 5000;
-          setInterval(() => {
-            slides[current].style.opacity = '0';
-            current = (current + 1) % slides.length;
-            slides[current].style.opacity = '1';
-          }, duration);
+
+        // Create controls
+        const controls = document.createElement('div');
+        controls.className = 'slide-controls';
+        controls.innerHTML = '<button id="prev">&#10094;</button><button id="next">&#10095;</button>';
+        hero.appendChild(controls);
+
+        let current = 0;
+        const duration = 5000;
+        function showSlide(i) {
+          slides[current].style.opacity = '0';
+          current = (i + slides.length) % slides.length;
+          slides[current].style.opacity = '1';
         }
+
+        document.getElementById('prev').addEventListener('click', () => {
+          showSlide(current - 1);
+        });
+        document.getElementById('next').addEventListener('click', () => {
+          showSlide(current + 1);
+        });
+
+        setInterval(() => {
+          showSlide(current + 1);
+        }, duration);
       }
 
       const toggle = document.querySelector('.nav-toggle');
@@ -391,7 +439,7 @@
 
         menu.addEventListener('click', (e) => {
           const target = e.target;
-          if (target.tagName === 'A' || (target.tagName === 'OPTION')) {
+          if (target.tagName === 'A' || target.tagName === 'OPTION') {
             menu.classList.remove('open');
             toggle.setAttribute('aria-expanded', 'false');
           }
