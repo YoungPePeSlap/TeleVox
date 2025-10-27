@@ -134,7 +134,12 @@
       overflow: hidden;
     }
 
-    .hero .hero-content { position: relative; z-index: 2; padding: 0 1rem; }
+    .hero .hero-content {
+		position: relative;
+		z-index: 2;
+		padding: 0 1rem;
+		transition: opacity 0.8s ease-in-out;
+	}
 
     .hero h2 {
       font-size: 2.2rem;
@@ -156,7 +161,6 @@
       z-index: 1;
     }
 
-    /* Slide navigation buttons */
     .hero .slide-controls {
       position: absolute;
       bottom: 20px;
@@ -208,26 +212,26 @@
     .service h3 {
       color: var(--accent);
     }
-.contact {
+
+    .contact {
       padding: 3rem 2rem;
       background: #e6f0ff;
-	  display: flex;                
-	  justify-content: space-around;
-	  align-items: flex-start;
-	  flex-wrap: wrap;              
-	  gap: 2rem;
+      display: flex;                
+      justify-content: space-around;
+      align-items: flex-start;
+      flex-wrap: wrap;              
+      gap: 2rem;
     }
 
     .contact form {
-	flex:1 1 300px;
-	max-width:500px
-      max-width: 500px;
+      flex:1 1 300px;
+      max-width:500px;
       margin: auto;
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
-	
+
     .contact input, .contact textarea {
       padding: 0.8rem;
       border: 1px solid #ccc;
@@ -244,11 +248,11 @@
       cursor: pointer;
       font-weight: bold;
     }
-	.contact-info{
-	flex:1 1 300px
-	max-width:400px;
-	}
-   
+
+    .contact-info{
+      flex:1 1 300px;
+      max-width:400px;
+    }
 
     footer {
       background: var(--dark);
@@ -299,9 +303,7 @@
         align-items: stretch;
       }
 
-      .nav-menu.open {
-        display: flex;
-      }
+      .nav-menu.open { display: flex; }
 
       .nav-menu a {
         display: block;
@@ -324,31 +326,27 @@
   <header>
     <img src="logo.png" alt="Televox logo" class="logo">
     <nav>
-      <!-- Mobile toggle -->
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">
         <span class="hamburger" aria-hidden="true"></span>
       </button>
 
-      <!-- Collapsible nav menu -->
       <div id="nav-menu" class="nav-menu" role="menu">
         <a href="#" role="menuitem">Home</a>
         <a href="#services" role="menuitem">Services</a>
         <a href="#contact" role="menuitem">Contact</a>
         <select name="languages" aria-label="Select language" onchange="if (this.value) location = this.value;">
-          <option value="" disabled selected>Select language</option>
-          <option value="index.html">Română</option>
+          <option value="" disabled selected>Select Language</option>
           <option value="TeleVoxM.html">Magyar</option>
+          <option value="index.html">Română</option>
         </select>
       </div>
     </nav>
   </header>
 
   <section class="hero" aria-label="Hero">
-  
     <div class="hero-content">
       <h2>Choose integrated solutions</h2>
-      <p>Reliable telecommunications solutions for everyone.</p>
-      <a href="#contact" class="cta-btn">Contact us</a>
+      <p>Reliable telecommunication solutions for everyone.</p>
     </div>
   </section>
 
@@ -359,25 +357,25 @@
     </div>
     <div class="service">
       <h3>Phone</h3>
-      <p>Reliable phone lines with affordable rates.</p>
+      <p>Reliable phone lines with competitive rates.</p>
     </div>
     <div class="service">
       <h3>Customer Service</h3>
-      <p>Friendly customer support, available whenever you need it.</p>
+      <p>Friendly customer support available whenever you need it.</p>
     </div>
   </section>
 
   <section id="contact" class="contact" aria-label="Contact">
-    <div class="contact-info">
+	<div class="contact-info">
     <h2>Contact</h2>
-	<p><b>Adress:</b><p/><p>Romania, Strada Gheorghe Doja Nr. 101</p>
-	<p><b>Email:</b><p/><p>lorantd@televoxsa.ro</p>
-	<p><b>Telephone:</b><p/><p>+40441607907</p>
-	<p><b>Facebook:</b><p/><a href="https://www.facebook.com/demeny.lorant"> Demény Loránt</a>
+	<p><b>Address:</b></p><p>Romania, Strada Gheorghe Doja Nr. 101</p>
+	<p><b>Email:</b></p><p>lorantd@televoxsa.ro</p>
+	<p><b>Phone:</b></p><p>+40 441 607 907</p>
+	<p><b>Facebook:</b></p><a href="https://www.facebook.com/demeny.lorant"> Demény Loránt</a>
 	</div>
 	
     <form action="https://formspree.io/f/xeolvoor" method="POST">
-	<h2 style="display:flex, flex:1 text-align:top">Send us an E-mail:</h2>
+	  <h2 style="display:flex; flex:1; align-items:flex-start;">Send us an email directly:</h2>
       <input type="text" name="name" placeholder="Name" required>
       <input type="email" name="email" placeholder="Email" required>
       <textarea name="message" rows="5" placeholder="Message" required></textarea>
@@ -386,69 +384,102 @@
   </section>
 
   <footer>
-    <p>© 2025 Televox | Email: lorantd@televoxsa.com | Tel: +40 441 607 907</p>
+    <p>© 2025 Televox | Email: lorantd@televoxsa.ro | Tel: +40 441 607 907</p>
   </footer>
 
-  <script>
-    (function() {
-      const hero = document.querySelector('.hero');
-      if (hero) {
-        const images = ["slide1.jpg", "slide2.png", "slide4.jpg", "slide3.png"];
-        const slides = [];
-        images.forEach((img, i) => {
-          const slide = document.createElement('div');
-          slide.className = 'slide';
-          slide.style.backgroundImage = `url(${img})`;
-          slide.style.opacity = i === 0 ? '1' : '0';
-          hero.appendChild(slide);
-          slides.push(slide);
-          const pre = new Image();
-          pre.src = img;
-        });
+ <script>
+(function() {
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    const images = ["slide1.jpg", "slide5.png", "slide6.png", "slide4.jpg"];
+    const slides = [];
 
-        // Create controls
-        const controls = document.createElement('div');
-        controls.className = 'slide-controls';
-        controls.innerHTML = '<button id="prev">&#10094;</button><button id="next">&#10095;</button>';
-        hero.appendChild(controls);
-
-        let current = 0;
-        const duration = 5000;
-        function showSlide(i) {
-          slides[current].style.opacity = '0';
-          current = (i + slides.length) % slides.length;
-          slides[current].style.opacity = '1';
-        }
-
-        document.getElementById('prev').addEventListener('click', () => {
-          showSlide(current - 1);
-        });
-        document.getElementById('next').addEventListener('click', () => {
-          showSlide(current + 1);
-        });
-
-        setInterval(() => {
-          showSlide(current + 1);
-        }, duration);
+    const slideTexts = [
+      {
+        title: "Telecommunication Networks",
+        description: "Complete solutions for fast and secure communications, tailored to your business needs."
+      },
+      {
+        title: "Fiber Optic Networks",
+        description: "Stable and high-performance connections using the latest fiber optic technologies."
+      },
+      {
+        title: "Structured Voice Networks",
+        description: "Modern infrastructures for clear and efficient data and voice transmission."
+      },
+      {
+        title: "Industrial Automation",
+        description: "Intelligent systems for optimizing processes and increasing productivity."
       }
+    ];
 
-      const toggle = document.querySelector('.nav-toggle');
-      const menu = document.getElementById('nav-menu');
-      if (toggle && menu) {
-        toggle.addEventListener('click', () => {
-          const isOpen = menu.classList.toggle('open');
-          toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        });
+    images.forEach((img, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'slide';
+      slide.style.backgroundImage = `url(${img})`;
+      slide.style.opacity = i === 0 ? '1' : '0';
+      hero.appendChild(slide);
+      slides.push(slide);
 
-        menu.addEventListener('click', (e) => {
-          const target = e.target;
-          if (target.tagName === 'A' || target.tagName === 'OPTION') {
-            menu.classList.remove('open');
-            toggle.setAttribute('aria-expanded', 'false');
-          }
-        });
+      const pre = new Image();
+      pre.src = img;
+    });
+
+    const controls = document.createElement('div');
+    controls.className = 'slide-controls';
+    controls.innerHTML = '<button id="prev">&#10094;</button><button id="next">&#10095;</button>';
+    hero.appendChild(controls);
+
+    let current = 0;
+    const duration = 5000;
+
+    function showSlide(i) {
+      slides[current].style.opacity = '0';
+      current = (i + slides.length) % slides.length;
+      slides[current].style.opacity = '1';
+
+      const text = slideTexts[current];
+      const heroContent = document.querySelector('.hero .hero-content');
+
+      heroContent.style.opacity = '0';
+      setTimeout(() => {
+        heroContent.innerHTML = `
+          <h2>${text.title}</h2>
+          <p>${text.description}</p>
+        `;
+        heroContent.style.opacity = '1';
+      }, 500);
+    }
+
+    document.getElementById('prev').addEventListener('click', () => {
+      showSlide(current - 1);
+    });
+    document.getElementById('next').addEventListener('click', () => {
+      showSlide(current + 1);
+    });
+
+    setInterval(() => {
+      showSlide(current + 1);
+    }, duration);
+  }
+
+  const toggle = document.querySelector('.nav-toggle');
+  const menu = document.getElementById('nav-menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    menu.addEventListener('click', (e) => {
+      const target = e.target;
+      if (target.tagName === 'A' || target.tagName === 'OPTION') {
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
       }
-    })();
-  </script>
+    });
+  }
+})();
+</script>
 </body>
 </html>
