@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -134,7 +134,12 @@
       overflow: hidden;
     }
 
-    .hero .hero-content { position: relative; z-index: 2; padding: 0 1rem; }
+    .hero .hero-content {
+		position: relative;
+		z-index: 2;
+		padding: 0 1rem;
+		transition: opacity 0.8s ease-in-out;
+	}
 
     .hero h2 {
       font-size: 2.2rem;
@@ -156,7 +161,6 @@
       z-index: 1;
     }
 
-    /* Slide navigation buttons */
     .hero .slide-controls {
       position: absolute;
       bottom: 20px;
@@ -208,26 +212,26 @@
     .service h3 {
       color: var(--accent);
     }
-.contact {
+
+    .contact {
       padding: 3rem 2rem;
       background: #e6f0ff;
-	  display: flex;                
-	  justify-content: space-around;
-	  align-items: flex-start;
-	  flex-wrap: wrap;              
-	  gap: 2rem;
+      display: flex;                
+      justify-content: space-around;
+      align-items: flex-start;
+      flex-wrap: wrap;              
+      gap: 2rem;
     }
 
     .contact form {
-	flex:1 1 300px;
-	max-width:500px
-      max-width: 500px;
+      flex:1 1 300px;
+      max-width:500px;
       margin: auto;
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
-	
+
     .contact input, .contact textarea {
       padding: 0.8rem;
       border: 1px solid #ccc;
@@ -244,11 +248,11 @@
       cursor: pointer;
       font-weight: bold;
     }
-	.contact-info{
-	flex:1 1 300px
-	max-width:400px;
-	}
-   
+
+    .contact-info{
+      flex:1 1 300px;
+      max-width:400px;
+    }
 
     footer {
       background: var(--dark);
@@ -299,9 +303,7 @@
         align-items: stretch;
       }
 
-      .nav-menu.open {
-        display: flex;
-      }
+      .nav-menu.open { display: flex; }
 
       .nav-menu a {
         display: block;
@@ -322,9 +324,9 @@
 </head>
 <body>
   <header>
-    <img src="logo.png" alt="Televox logo" class="logo">
+    <img src="logo.png" alt="Televox logó" class="logo">
     <nav>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Navigáció megnyitása">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Menü váltása">
         <span class="hamburger" aria-hidden="true"></span>
       </button>
 
@@ -332,10 +334,10 @@
         <a href="#" role="menuitem">Kezdőlap</a>
         <a href="#services" role="menuitem">Szolgáltatások</a>
         <a href="#contact" role="menuitem">Kapcsolat</a>
-        <select name="languages" aria-label="Válasszon nyelvet" onchange="if (this.value) location = this.value;">
-          <option value="" disabled selected>Válasszon nyelvet</option>
-          <option value="index.html">Română</option>
-          <option value="TeleVoxE.html">English</option>
+        <select name="languages" aria-label="Válassz nyelvet" onchange="if (this.value) location = this.value;">
+          <option value="" disabled selected>Válassz nyelvet</option>
+          <option value="TeleVoxE.html">Angol</option>
+          <option value="index.html">Román</option>
         </select>
       </div>
     </nav>
@@ -343,9 +345,8 @@
 
   <section class="hero" aria-label="Hero">
     <div class="hero-content">
-      <h2>Válassza az integrált megoldásokat</h2>
+      <h2>Válassz integrált megoldásokat</h2>
       <p>Megbízható távközlési megoldások mindenkinek.</p>
-      <a href="#contact" class="cta-btn">Lépjen kapcsolatba velünk</a>
     </div>
   </section>
 
@@ -356,25 +357,25 @@
     </div>
     <div class="service">
       <h3>Telefon</h3>
-      <p>Megbízható telefonvonalak kedvező tarifákkal.</p>
+      <p>Megbízható telefonvonalak versenyképes díjakkal.</p>
     </div>
     <div class="service">
       <h3>Ügyfélszolgálat</h3>
-      <p>Barátságos ügyféltámogatás, mindig amikor szüksége van rá.</p>
+      <p>Barátságos ügyfélszolgálat, amikor csak szükséged van rá.</p>
     </div>
   </section>
 
   <section id="contact" class="contact" aria-label="Kapcsolat">
-    
 	<div class="contact-info">
     <h2>Kapcsolat</h2>
-	<p><b>Cím:</b><p/><p>Románia, Strada Gheorghe Doja Nr. 101</p>
-	<p><b>Email:</b><p/><p>lorantd@televoxsa.ro</p>
-	<p><b>Telefon:</b><p/><p>+40441607907</p>
-	<p><b>Facebook:</b><p/><a href="https://www.facebook.com/demeny.lorant"> Demény Loránt</a>
+	<p><b>Cím:</b></p><p>Románia, Strada Gheorghe Doja Nr. 101</p>
+	<p><b>Email:</b></p><p>lorantd@televoxsa.ro</p>
+	<p><b>Telefon:</b></p><p>+40 441 607 907</p>
+	<p><b>Facebook:</b></p><a href="https://www.facebook.com/demeny.lorant"> Demény Loránt</a>
 	</div>
+	
     <form action="https://formspree.io/f/xeolvoor" method="POST">
-	<h2 style="display:flex, flex:1 text-align:top">Küldj egy E-mail-t direktbe:</h2>
+	  <h2 style="display:flex; flex:1; align-items:flex-start;">Küldj nekünk közvetlenül üzenetet:</h2>
       <input type="text" name="name" placeholder="Név" required>
       <input type="email" name="email" placeholder="Email" required>
       <textarea name="message" rows="5" placeholder="Üzenet" required></textarea>
@@ -383,69 +384,102 @@
   </section>
 
   <footer>
-    <p>© 2025 Televox | E-mail: lorantd@televoxsa.com | Tel: +40 441 607 907</p>
+    <p>© 2025 Televox | Email: lorantd@televoxsa.ro | Tel: +40 441 607 907</p>
   </footer>
 
-  <script>
-    (function() {
-      const hero = document.querySelector('.hero');
-      if (hero) {
-        const images = ["slide1.jpg", "slide2.png", "slide4.jpg", "slide3.png"];
-        const slides = [];
-        images.forEach((img, i) => {
-          const slide = document.createElement('div');
-          slide.className = 'slide';
-          slide.style.backgroundImage = `url(${img})`;
-          slide.style.opacity = i === 0 ? '1' : '0';
-          hero.appendChild(slide);
-          slides.push(slide);
-          const pre = new Image();
-          pre.src = img;
-        });
+ <script>
+(function() {
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    const images = ["slide1.jpg", "slide5.png", "slide6.png", "slide4.jpg"];
+    const slides = [];
 
-        // Create controls
-        const controls = document.createElement('div');
-        controls.className = 'slide-controls';
-        controls.innerHTML = '<button id="prev">&#10094;</button><button id="next">&#10095;</button>';
-        hero.appendChild(controls);
-
-        let current = 0;
-        const duration = 5000;
-        function showSlide(i) {
-          slides[current].style.opacity = '0';
-          current = (i + slides.length) % slides.length;
-          slides[current].style.opacity = '1';
-        }
-
-        document.getElementById('prev').addEventListener('click', () => {
-          showSlide(current - 1);
-        });
-        document.getElementById('next').addEventListener('click', () => {
-          showSlide(current + 1);
-        });
-
-        setInterval(() => {
-          showSlide(current + 1);
-        }, duration);
+    const slideTexts = [
+      {
+        title: "Távközlési hálózatok",
+        description: "Teljes körű megoldások gyors és biztonságos kommunikációhoz, az Ön igényeihez igazítva."
+      },
+      {
+        title: "Optikai szálas hálózatok",
+        description: "Stabil és nagy teljesítményű kapcsolatok a legújabb optikai szálas technológiákkal."
+      },
+      {
+        title: "Strukturált hanghálózatok",
+        description: "Modern infrastruktúra tiszta és hatékony adat- és hangátvitelhez."
+      },
+      {
+        title: "Ipari automatizálás",
+        description: "Intelligens rendszerek a folyamatok optimalizálásához és a termelékenység növeléséhez."
       }
+    ];
 
-      const toggle = document.querySelector('.nav-toggle');
-      const menu = document.getElementById('nav-menu');
-      if (toggle && menu) {
-        toggle.addEventListener('click', () => {
-          const isOpen = menu.classList.toggle('open');
-          toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        });
+    images.forEach((img, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'slide';
+      slide.style.backgroundImage = `url(${img})`;
+      slide.style.opacity = i === 0 ? '1' : '0';
+      hero.appendChild(slide);
+      slides.push(slide);
 
-        menu.addEventListener('click', (e) => {
-          const target = e.target;
-          if (target.tagName === 'A' || target.tagName === 'OPTION') {
-            menu.classList.remove('open');
-            toggle.setAttribute('aria-expanded', 'false');
-          }
-        });
+      const pre = new Image();
+      pre.src = img;
+    });
+
+    const controls = document.createElement('div');
+    controls.className = 'slide-controls';
+    controls.innerHTML = '<button id="prev">&#10094;</button><button id="next">&#10095;</button>';
+    hero.appendChild(controls);
+
+    let current = 0;
+    const duration = 5000;
+
+    function showSlide(i) {
+      slides[current].style.opacity = '0';
+      current = (i + slides.length) % slides.length;
+      slides[current].style.opacity = '1';
+
+      const text = slideTexts[current];
+      const heroContent = document.querySelector('.hero .hero-content');
+
+      heroContent.style.opacity = '0';
+      setTimeout(() => {
+        heroContent.innerHTML = `
+          <h2>${text.title}</h2>
+          <p>${text.description}</p>
+        `;
+        heroContent.style.opacity = '1';
+      }, 500);
+    }
+
+    document.getElementById('prev').addEventListener('click', () => {
+      showSlide(current - 1);
+    });
+    document.getElementById('next').addEventListener('click', () => {
+      showSlide(current + 1);
+    });
+
+    setInterval(() => {
+      showSlide(current + 1);
+    }, duration);
+  }
+
+  const toggle = document.querySelector('.nav-toggle');
+  const menu = document.getElementById('nav-menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    menu.addEventListener('click', (e) => {
+      const target = e.target;
+      if (target.tagName === 'A' || target.tagName === 'OPTION') {
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
       }
-    })();
-  </script>
+    });
+  }
+})();
+</script>
 </body>
 </html>
