@@ -77,152 +77,150 @@
     <p>© 2025 Televox | Email: lorantd@televoxsa.ro | Tel: +40441607907</p>
   </footer>
 
- <script>
-(function() {
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        
-        
-        
-        
-        const images = ["intro.png", "slide1.jpg", "slide5.png", "slide6.png", "slide4.jpg"]; 
-        
-        
-        const slideTexts = [
-            { title: "Optati pentru solutii integrate", description: "Soluții de telecomunicații fiabile pentru toată lumea." }, 
-            { title: "Reţele de telecomunicaţii", description: "Soluții complete pentru comunicații rapide și sigure, adaptate nevoilor afacerii tale." }, 
-            { title: "Reţele fibra optică", description: "Conexiuni stabile și performante prin cele mai újabb technológiák de fibră optică." }, 
-            { title: "Rețele structurate voce", description: "Infrastructuri moderne pentru transmisii clare și eficiente de date și voce." }, 
-            { title: "Automatizări industriale", description: "Sisteme inteligente pentru optimizarea proceselor și creșterésa productivității." } 
-        ];
-        
-        let slides = [];
-        let current = 0;
-        const duration = 6000; 
-        const heroContent = document.querySelector('.hero .hero-content');
-        let autoSlideInterval; 
+<script>
+    (function() {
+        const hero = document.querySelector('.hero');
+        if (hero) {
+            
+            const images = ["intro.png", "slide1.jpg", "slide5.png", "slide10.jpg", "slide4.jpg"]; 
+            
+            
+            const slideTexts = [
+                { title: "Optati pentru solutii integrate", description: "Soluții de telecomunicații fiabile pentru toată lumea." }, 
+                { title: "Reţele de telecomunicaţii", description: "Soluții complete pentru comunicații rapide și sigure, adaptate nevoilor afacerii tale." }, 
+                { title: "Reţele fibra optică", description: "Conexiuni stabile și performante prin cele mai újabb tehnológiák de fibră optică." }, 
+                { title: "Rețele structurate", description: "Infrastructuri moderne pentru transmisii clare și eficiente de date și voce." }, 
+                { title: "Automatizări industriale", description: "Sisteme inteligente pentru optimizarea proceselor și creșterésa productivității." } 
+            ];
+            
+            let slides = [];
+            let current = 0;
+            const duration = 6000;
+            const heroContent = document.querySelector('.hero .hero-content');
+            let autoSlideInterval;
 
-        const firstCyclicIndex = 1; 
-        const lastCyclicIndex = images.length - 1; 
-        const cyclicSlidesCount = lastCyclicIndex - firstCyclicIndex + 1; 
+            const firstCyclicIndex = 1;
+            const lastCyclicIndex = images.length - 1;
+            const cyclicSlidesCount = lastCyclicIndex - firstCyclicIndex + 1;
 
-        
-        
-        function showSlide(i, isCyclic) {
-            
-            if(slides[current]) {
-                slides[current].style.opacity = '0'; 
-            }
+            /**
+             * Funkció az automatikus diavetítés újraindításához
+             * Megszakítja a futó időzítőt, majd újra beállít egy újat.
+             */
+            function startAutoSlide() {
+                // Törölje a régi időzítőt, hogy ne fusson több egyszerre
+                clearInterval(autoSlideInterval);
 
-            
-            if (isCyclic) {
-                
-                if (i > lastCyclicIndex) {
-                    i = firstCyclicIndex; 
-                }
-                
-                if (i < firstCyclicIndex) {
-                    i = lastCyclicIndex;
-                }
-            }
+                // Kezdje az aktuális diától
+                let cycleIndex = current;
 
-            
-            current = i;
+                autoSlideInterval = setInterval(() => {
+                    cycleIndex++;
 
-            
-            slides[current].style.opacity = '1';
-            
-            
-            const textToDisplay = slideTexts[current];
+                    // A ciklus beállítása a firstCyclicIndex és lastCyclicIndex között
+                    if (cycleIndex > lastCyclicIndex) {
+                        cycleIndex = firstCyclicIndex;
+                    }
 
-            
-            heroContent.style.opacity = '0';
+                    showSlide(cycleIndex, true);
+                }, duration);
+            }
 
-            setTimeout(() => {
-                heroContent.innerHTML = `
-                    <h2>${textToDisplay.title}</h2>
-                    <p>${textToDisplay.description}</p>
-                `;
-                heroContent.style.opacity = '1';
-            }, 500); 
-        }
+            function showSlide(i, isCyclic) {
+                // Eltünteti a jelenlegi diát
+                if (slides[current]) {
+                    slides[current].style.opacity = '0';
+                }
 
-        
-        images.forEach((img, i) => {
-            const slide = document.createElement('div');
-            slide.className = 'slide';
-            slide.style.backgroundImage = `url(${img})`;
-            slide.style.opacity = i === 0 ? '1' : '0'; 
-            hero.appendChild(slide);
-            slides.push(slide);
+                // Ciklikus navigáció kezelése
+                if (isCyclic) {
+                    if (i > lastCyclicIndex) {
+                        i = firstCyclicIndex;
+                    }
+                    if (i < firstCyclicIndex) {
+                        i = lastCyclicIndex;
+                    }
+                }
 
-            
-            const pre = new Image();
-            pre.src = img;
-        });
+                current = i;
 
-        
-        const controls = document.createElement('div');
-        controls.className = 'slide-controls';
-        controls.innerHTML = '<button id="prev">&#10094;</button><button id="next">&#10095;</button>';
-        hero.appendChild(controls);
+                // Megjeleníti az új diát
+                slides[current].style.opacity = '1';
 
+                // Szöveg frissítése a dia tartalma szerint
+                const textToDisplay = slideTexts[current];
 
-        
-        
-        setTimeout(() => {
-            
-            showSlide(firstCyclicIndex, false); 
-            
-            
-            let cycleIndex = firstCyclicIndex;
+                // Áttűnés a hero-content-en
+                heroContent.style.opacity = '0';
 
-            autoSlideInterval = setInterval(() => {
-                cycleIndex++; 
+                setTimeout(() => {
+                    heroContent.innerHTML = `
+                        <h2>${textToDisplay.title}</h2>
+                        <p>${textToDisplay.description}</p>
+                    `;
+                    heroContent.style.opacity = '1';
+                }, 500);
+            }
 
-                
-                if (cycleIndex > lastCyclicIndex) {
-                    cycleIndex = firstCyclicIndex;
-                }
+            // Diák létrehozása és előtöltése
+            images.forEach((img, i) => {
+                const slide = document.createElement('div');
+                slide.className = 'slide';
+                slide.style.backgroundImage = `url(${img})`;
+                slide.style.opacity = i === 0 ? '1' : '0'; 
+                hero.appendChild(slide);
+                slides.push(slide);
 
-                
-                showSlide(cycleIndex, true); 
-            }, duration);
-            
-        }, duration);
+                // Kép előtöltés
+                const pre = new Image();
+                pre.src = img;
+            });
+
+            // Vezérlők (gombok) létrehozása
+            const controls = document.createElement('div');
+            controls.className = 'slide-controls';
+            controls.innerHTML = '<button id="prev">&#10094;</button><button id="next">&#10095;</button>';
+            hero.appendChild(controls);
 
 
-        
-        document.getElementById('prev').addEventListener('click', () => {
-            clearInterval(autoSlideInterval); 
-            
-            showSlide(current - 1, true); 
-        });
-        document.getElementById('next').addEventListener('click', () => {
-            clearInterval(autoSlideInterval);
-            
-            showSlide(current + 1, true);
-        });
+            // Az első dia megjelenítése és az automatikus diavetítés indítása
+            setTimeout(() => {
+                showSlide(firstCyclicIndex, false);
+                startAutoSlide(); // INDÍTÁS: Elindítja az automatikus lejátszást az első dia megjelenítése után
+            }, duration);
 
-    
-    const toggle = document.querySelector('.nav-toggle');
-    const menu = document.getElementById('nav-menu');
-    if (toggle && menu) {
-       toggle.addEventListener('click', () => {
-          const isOpen = menu.classList.toggle('open');
-          toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-       });
 
-       menu.addEventListener('click', (e) => {
-          const target = e.target;
-          if (target.tagName === 'A' || target.tagName === 'OPTION') {
-            menu.classList.remove('open');
-            toggle.setAttribute('aria-expanded', 'false');
-          }
-       });
-    }
-}
-})();
-</script>
+            // Gombok eseménykezelői
+            document.getElementById('prev').addEventListener('click', () => {
+                showSlide(current - 1, true);
+                startAutoSlide(); // ÚJRAINDÍTÁS: Újraindítja az automatikus lejátszást
+            });
+            document.getElementById('next').addEventListener('click', () => {
+                showSlide(current + 1, true);
+                startAutoSlide(); // ÚJRAINDÍTÁS: Újraindítja az automatikus lejátszást
+            });
+
+            
+            // Navigáció vezérlő
+            const toggle = document.querySelector('.nav-toggle');
+            const menu = document.getElementById('nav-menu');
+            if (toggle && menu) {
+                toggle.addEventListener('click', () => {
+                    const isOpen = menu.classList.toggle('open');
+                    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                });
+
+                menu.addEventListener('click', (e) => {
+                    const target = e.target;
+                    if (target.tagName === 'A' || target.tagName === 'OPTION') {
+                        menu.classList.remove('open');
+                        toggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        }
+    })();
+    </script>
 </body>
 </html>
+
