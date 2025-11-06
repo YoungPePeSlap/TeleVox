@@ -78,151 +78,103 @@
   </footer>
 
 <script>
-    (function() {
-        const hero = document.querySelector('.hero');
-        if (hero) {
-            
-            const images = ["intro.png", "slide1.jpg", "slide5.png", "slide10.jpg", "slide4.jpg"]; 
-            
-            
-            const slideTexts = [
+// SAME SCRIPT – unchanged
+(function() {
+const hero = document.querySelector('.hero');
+if (hero) {
+
+            const images = ["intro.png", "slide40.jpg", "slide5.png", "slide10.jpg", "slide34.jpg","slide20.png","slide25.png"]; 
+
+const slideTexts = [
 { title: "Válassza az integrált megoldásokat", description: "Megbízható telekommunikációs megoldások mindenkinek." },
 { title: "Telekommunikációs hálózatok", description: "Teljes körű megoldások gyors és biztonságos kommunikációhoz." },
 { title: "Optikai hálózatok", description: "Stabil és nagy teljesítményű kapcsolatok modern optikai technológiákkal." },
-{ title: "Strukturált hanghálózatok", description: "Modern infrastruktúra tiszta és hatékony adat- és hangátvitelhez." },
-{ title: "Ipari automatizálás", description: "Intelligens rendszerek a folyamatok optimalizálásához és termelékenység növeléséhez." }
+{ title: "Strukturált hálózatok", description: "Modern infrastruktúra tiszta és hatékony adat- és hangátvitelhez." },
+{ title: "Ipari automatizálás", description: "Intelligens rendszerek a folyamatok optimalizálásához és termelékenység növeléséhez." },
+{ title: "Gyenge áram", description: "Biztonságos és hatékony elektromos rendszerek az energiaelosztáshoz és az érzékeny berendezések védelméhez."  },
+{ title: "Áramállapot", description: "Intelligens felügyelet és vezérlés a berendezések és az elektromos ellátás állapotának biztosítására a maximális biztonság és teljesítmény érdekében." }
 ];
-            
-            let slides = [];
-            let current = 0;
-            const duration = 6000;
-            const heroContent = document.querySelector('.hero .hero-content');
-            let autoSlideInterval;
 
-            const firstCyclicIndex = 1;
-            const lastCyclicIndex = images.length - 1;
-            const cyclicSlidesCount = lastCyclicIndex - firstCyclicIndex + 1;
+let slides = [];
+let current = 0;
+const duration = 6000;
+const heroContent = document.querySelector('.hero .hero-content');
+let autoSlideInterval;
 
-            /**
-             * Funkció az automatikus diavetítés újraindításához
-             * Megszakítja a futó időzítőt, majd újra beállít egy újat.
-             */
-            function startAutoSlide() {
-                // Törölje a régi időzítőt, hogy ne fusson több egyszerre
-                clearInterval(autoSlideInterval);
+const firstCyclicIndex = 1; 
+const lastCyclicIndex = images.length - 1; 
 
-                // Kezdje az aktuális diától
-                let cycleIndex = current;
+function showSlide(i, isCyclic) {
+if(slides[current]) slides[current].style.opacity = '0';
 
-                autoSlideInterval = setInterval(() => {
-                    cycleIndex++;
+if (isCyclic) {
+if (i > lastCyclicIndex) i = firstCyclicIndex;
+if (i < firstCyclicIndex) i = lastCyclicIndex;
+}
 
-                    // A ciklus beállítása a firstCyclicIndex és lastCyclicIndex között
-                    if (cycleIndex > lastCyclicIndex) {
-                        cycleIndex = firstCyclicIndex;
-                    }
+current = i;
+slides[current].style.opacity = '1';
 
-                    showSlide(cycleIndex, true);
-                }, duration);
-            }
+const textToDisplay = slideTexts[current];
+heroContent.style.opacity = '0';
 
-            function showSlide(i, isCyclic) {
-                // Eltünteti a jelenlegi diát
-                if (slides[current]) {
-                    slides[current].style.opacity = '0';
-                }
+setTimeout(() => {
+heroContent.innerHTML = `<h2>${textToDisplay.title}</h2><p>${textToDisplay.description}</p>`;
+heroContent.style.opacity = '1';
+}, 500);
+}
 
-                // Ciklikus navigáció kezelése
-                if (isCyclic) {
-                    if (i > lastCyclicIndex) {
-                        i = firstCyclicIndex;
-                    }
-                    if (i < firstCyclicIndex) {
-                        i = lastCyclicIndex;
-                    }
-                }
+images.forEach((img, i) => {
+const slide = document.createElement('div');
+slide.className = 'slide';
+slide.style.backgroundImage = `url(${img})`;
+slide.style.opacity = i === 0 ? '1' : '0';
+hero.appendChild(slide);
+slides.push(slide);
+const pre = new Image(); pre.src = img;
+});
 
-                current = i;
+const controls = document.createElement('div');
+controls.className = 'slide-controls';
+controls.innerHTML = '<button id="prev">&#10094;</button><button id="next">&#10095;</button>';
+hero.appendChild(controls);
 
-                // Megjeleníti az új diát
-                slides[current].style.opacity = '1';
+setTimeout(() => {
+showSlide(firstCyclicIndex, false);
+let cycleIndex = firstCyclicIndex;
+autoSlideInterval = setInterval(() => {
+cycleIndex++;
+if (cycleIndex > lastCyclicIndex) cycleIndex = firstCyclicIndex;
+showSlide(cycleIndex, true);
+}, duration);
+}, duration);
 
-                // Szöveg frissítése a dia tartalma szerint
-                const textToDisplay = slideTexts[current];
+document.getElementById('prev').addEventListener('click', () => {
+clearInterval(autoSlideInterval);
+showSlide(current - 1, true);
+});
+document.getElementById('next').addEventListener('click', () => {
+clearInterval(autoSlideInterval);
+showSlide(current + 1, true);
+});
 
-                // Áttűnés a hero-content-en
-                heroContent.style.opacity = '0';
-
-                setTimeout(() => {
-                    heroContent.innerHTML = `
-                        <h2>${textToDisplay.title}</h2>
-                        <p>${textToDisplay.description}</p>
-                    `;
-                    heroContent.style.opacity = '1';
-                }, 500);
-            }
-
-            // Diák létrehozása és előtöltése
-            images.forEach((img, i) => {
-                const slide = document.createElement('div');
-                slide.className = 'slide';
-                slide.style.backgroundImage = `url(${img})`;
-                slide.style.opacity = i === 0 ? '1' : '0'; 
-                hero.appendChild(slide);
-                slides.push(slide);
-
-                // Kép előtöltés
-                const pre = new Image();
-                pre.src = img;
-            });
-
-            // Vezérlők (gombok) létrehozása
-            const controls = document.createElement('div');
-            controls.className = 'slide-controls';
-            controls.innerHTML = '<button id="prev">&#10094;</button><button id="next">&#10095;</button>';
-            hero.appendChild(controls);
-
-
-            // Az első dia megjelenítése és az automatikus diavetítés indítása
-            setTimeout(() => {
-                showSlide(firstCyclicIndex, false);
-                startAutoSlide(); // INDÍTÁS: Elindítja az automatikus lejátszást az első dia megjelenítése után
-            }, duration);
-
-
-            // Gombok eseménykezelői
-            document.getElementById('prev').addEventListener('click', () => {
-                showSlide(current - 1, true);
-                startAutoSlide(); // ÚJRAINDÍTÁS: Újraindítja az automatikus lejátszást
-            });
-            document.getElementById('next').addEventListener('click', () => {
-                showSlide(current + 1, true);
-                startAutoSlide(); // ÚJRAINDÍTÁS: Újraindítja az automatikus lejátszást
-            });
-
-            
-            // Navigáció vezérlő
-            const toggle = document.querySelector('.nav-toggle');
-            const menu = document.getElementById('nav-menu');
-            if (toggle && menu) {
-                toggle.addEventListener('click', () => {
-                    const isOpen = menu.classList.toggle('open');
-                    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-                });
-
-                menu.addEventListener('click', (e) => {
-                    const target = e.target;
-                    if (target.tagName === 'A' || target.tagName === 'OPTION') {
-                        menu.classList.remove('open');
-                        toggle.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
-        }
-    })();
-    </script>
+const toggle = document.querySelector('.nav-toggle');
+const menu = document.getElementById('nav-menu');
+if (toggle && menu) {
+toggle.addEventListener('click', () => {
+const isOpen = menu.classList.toggle('open');
+toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+menu.addEventListener('click', (e) => {
+if (e.target.tagName === 'A' || e.target.tagName === 'OPTION') {
+menu.classList.remove('open');
+toggle.setAttribute('aria-expanded', 'false');
+}
+});
+}
+}
+})();
+</script>
 
 </body>
 </html>
-
-
