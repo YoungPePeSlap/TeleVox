@@ -4,330 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Televox</title>
-  <style>
-    :root{
-      --header-height: 64px;
-      --primary: #0378e4;
-      --accent: #004080;
-      --dark: #00264d;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: "Times New Roman", serif;
-      background: #f9f9f9;
-      color: #333;
-      padding-top: var(--header-height);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    header {
-      background: var(--primary);
-      color: white;
-      padding: 0 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: var(--header-height);
-      z-index: 1000;
-    }
-
-    header img.logo {
-      height: 140%;
-      width: 140%;
-      width: auto;
-      max-width: 100%;
-      display: block;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .nav-menu {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      margin-left: 0.5rem;
-    }
-
-    nav select {
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      border: none;
-      background: rgba(255,255,255,0.12);
-      color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-      -webkit-appearance: none;
-      appearance: none;
-      outline: none;
-    }
-
-    nav select option {
-      color: #000;
-      background: #fff;
-    }
-
-    nav select option[disabled] {
-      color: #ddd;
-    }
-
-    nav select:focus {
-      box-shadow: 0 0 0 3px rgba(3,120,228,0.18);
-    }
-
-    .nav-toggle {
-      display: none;
-      background: transparent;
-      border: none;
-      color: white;
-      padding: 0.25rem;
-      cursor: pointer;
-      margin-left: 0.5rem;
-    }
-
-    .nav-toggle .hamburger {
-      width: 24px;
-      height: 2px;
-      background: white;
-      display: block;
-      position: relative;
-    }
-    .nav-toggle .hamburger::before,
-    .nav-toggle .hamburger::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      width: 24px;
-      height: 2px;
-      background: white;
-      display: block;
-    }
-    .nav-toggle .hamburger::before { top: -7px; }
-    .nav-toggle .hamburger::after { top: 7px; }
-
-    .hero {
-      position: relative;
-      height: 80vh;
-      color: white;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    .hero .hero-content {
-		position: relative;
-		z-index: 2;
-		padding: 0 1rem;
-		transition: opacity 0.8s ease-in-out;
-	}
-
-
-    .hero h2 {
-      font-size: 2.2rem;
-      margin: 0 0 1rem;
-    }
-
-    .hero p { margin: 0 0 1.25rem; }
-
-    .hero .slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-size: cover;
-      background-position: center;
-      transition: opacity 1s ease-in-out;
-      opacity: 0;
-      z-index: 1;
-    }
-
-    /* Slide navigation buttons */
-    .hero .slide-controls {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 10px;
-      z-index: 3;
-    }
-
-    .hero .slide-controls button {
-      background: rgba(0,0,0,0.4);
-      color: white;
-      border: none;
-      padding: 0.5rem 0.9rem;
-      border-radius: 50%;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-
-    .hero .slide-controls button:hover {
-      background: rgba(0,0,0,0.7);
-    }
-
-    @media (max-width: 600px) {
-      .hero .slide-controls button {
-        padding: 0.3rem 0.6rem;
-        font-size: 0.9rem;
-      }
-    }
-
-    .services {
-      display: flex;
-      justify-content: space-around;
-      padding: 3rem 2rem;
-      background: white;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .service {
-      flex: 1 1 240px;
-      max-width: 33%;
-      text-align: center;
-      min-width: 220px;
-    }
-
-    .service h3 {
-      color: var(--accent);
-    }
-.contact {
-      padding: 3rem 2rem;
-      background: #e6f0ff;
-      display: flex;                
-      justify-content: space-around;
-      align-items: flex-start;
-      flex-wrap: wrap;              
-      gap: 2rem;
-    }
-
-    .contact form {
-      flex:1 1 300px;
-      max-width:500px;
-      margin: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-	
-    .contact input, .contact textarea {
-      padding: 0.8rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font: inherit;
-    }
-
-    .contact button {
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-	.contact-info{
-	flex:1 1 300px
-	max-width:400px;
-	}
-   
-
-    footer {
-      background: var(--dark);
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
-    }
-
-    .cta-btn {
-      display: inline-block;
-      background: #e60000;
-      color: white;
-      text-decoration: none;
-      padding: 0.9rem 1.6rem;
-      font-size: 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.2s ease;
-    }
-
-    .cta-btn:hover {
-      background: #c40000;
-    }
-
-    @media (max-width: 900px) {
-      .service { max-width: 45%; }
-    }
-
-    @media (max-width: 600px) {
-      .logo { height: 35px; }
-      .hero h2 { font-size: 1.6rem; }
-      .service { max-width: 100%; }
-
-      .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
-
-      .nav-menu {
-        display: none;
-        position: absolute;
-        top: var(--header-height);
-        right: 0;
-        left: 0;
-        background: var(--primary);
-        padding: 0.75rem 1rem;
-        flex-direction: column;
-        gap: 0.5rem;
-        align-items: stretch;
-      }
-
-      .nav-menu.open {
-        display: flex;
-      }
-
-      .nav-menu a {
-        display: block;
-        padding: 0.5rem 0.25rem;
-      }
-
-      .nav-menu select {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 0.5rem;
-        margin-top: 0.25rem;
-        background: #fff;
-        color: #000;
-        font-weight: normal;
-      }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="stylep.css">
 </head>
 <body>
   <header>
-    <img   src="logo.png" alt="Televox logo" class="logo">
+    <img src="logo.png" alt="Televox logo" class="logo">
     <nav>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">
         <span class="hamburger" aria-hidden="true"></span>
@@ -348,6 +30,7 @@
 
   <section class="hero" aria-label="Hero">
     <div class="hero-content">
+      
       <h2>Optati pentru solutii integrate</h2>
       <p>Soluții de telecomunicații fiabile pentru toată lumea.</p>
     </div>
@@ -364,7 +47,7 @@
     </div>
     <div class="service">
       <h3>Serviciu Clienți</h3>
-      <p>Asistență prietenoasă pentru clienți, disponibilă ori de câte ori aveți nevoie.</p>
+      <p>Asistență prietenoasă pentru clienți, disponibilă ori de câte ori aveţi nevoie.</p>
     </div>
   </section>
 
@@ -378,12 +61,16 @@
 	</div>
 	
     <form action="https://formspree.io/f/xeolvoor" method="POST">
-	  <h2 style="display:flex; flex:1; align-items:flex-start;">Trimite-mi un E-mail direct:</h2>
+	  <h2 style="display:flex; flex:1; align-items:flex-start;">Trimite-mi un E-mail direct:</h2>
       <input type="text" name="name" placeholder="Nume" required>
       <input type="email" name="email" placeholder="Email" required>
       <textarea name="message" rows="5" placeholder="Mesaj" required></textarea>
       <button type="submit">Trimite</button>
     </form>
+	<div style="flex:1 1 300px;max-width:500px;">
+	<h2 style="display:flex; flex:1; align-items:flex-start;">Utile</h2>
+	<a href="PD.html" >Politica În Domeniul Calităţii</a>
+	</div>
   </section>
 
   <footer>
@@ -392,109 +79,150 @@
 
  <script>
 (function() {
-  const hero = document.querySelector('.hero');
-  if (hero) {
-    const images = ["slide1.jpg", "slide5.png", "slide6.png", "slide4.jpg"];
-    const slides = [];
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        
+        
+        
+        
+        const images = ["intro.png", "slide1.jpg", "slide5.png", "slide6.png", "slide4.jpg"]; 
+        
+        
+        const slideTexts = [
+            { title: "Optati pentru solutii integrate", description: "Soluții de telecomunicații fiabile pentru toată lumea." }, 
+            { title: "Reţele de telecomunicaţii", description: "Soluții complete pentru comunicații rapide și sigure, adaptate nevoilor afacerii tale." }, 
+            { title: "Reţele fibra optică", description: "Conexiuni stabile și performante prin cele mai újabb technológiák de fibră optică." }, 
+            { title: "Rețele structurate voce", description: "Infrastructuri moderne pentru transmisii clare și eficiente de date și voce." }, 
+            { title: "Automatizări industriale", description: "Sisteme inteligente pentru optimizarea proceselor și creșterésa productivității." } 
+        ];
+        
+        let slides = [];
+        let current = 0;
+        const duration = 6000; 
+        const heroContent = document.querySelector('.hero .hero-content');
+        let autoSlideInterval; 
 
-    // Szövegek a slide-okhoz
-    const slideTexts = [
-      {
-        title: "Reţele de telecomunicaţii",
-        description: "Soluții complete pentru comunicații rapide și sigure, adaptate nevoilor afacerii tale."
-      },
-      {
-        title: "Reţele fibra optică",
-        description: "Conexiuni stabile și performante prin cele mai noi tehnologii de fibră optică."
-      },
-      {
-        title: "Rețele structurate voce",
-        description: "Infrastructuri moderne pentru transmisii clare și eficiente de date și voce."
-      },
-      {
-        title: "Automatizări industriale",
-        description: "Sisteme inteligente pentru optimizarea proceselor și creșterea productivității."
-      }
-    ];
+        const firstCyclicIndex = 1; 
+        const lastCyclicIndex = images.length - 1; 
+        const cyclicSlidesCount = lastCyclicIndex - firstCyclicIndex + 1; 
 
-    images.forEach((img, i) => {
-      const slide = document.createElement('div');
-      slide.className = 'slide';
-      slide.style.backgroundImage = `url(${img})`;
-      slide.style.opacity = i === 0 ? '1' : '0';
-      hero.appendChild(slide);
-      slides.push(slide);
+        
+        
+        function showSlide(i, isCyclic) {
+            
+            if(slides[current]) {
+                slides[current].style.opacity = '0'; 
+            }
 
-      // Kép előtöltése
-      const pre = new Image();
-      pre.src = img;
-    });
+            
+            if (isCyclic) {
+                
+                if (i > lastCyclicIndex) {
+                    i = firstCyclicIndex; 
+                }
+                
+                if (i < firstCyclicIndex) {
+                    i = lastCyclicIndex;
+                }
+            }
 
-    // Slide navigáció
-    const controls = document.createElement('div');
-    controls.className = 'slide-controls';
-    controls.innerHTML = '<button id="prev">&#10094;</button><button id="next">&#10095;</button>';
-    hero.appendChild(controls);
+            
+            current = i;
 
-    let current = 0;
-    const duration = 6000;
+            
+            slides[current].style.opacity = '1';
+            
+            
+            const textToDisplay = slideTexts[current];
 
-    function showSlide(i) {
-  slides[current].style.opacity = '0';
-  current = (i + slides.length) % slides.length;
-  slides[current].style.opacity = '1';
+            
+            heroContent.style.opacity = '0';
 
-  const text = slideTexts[current];
-  const heroContent = document.querySelector('.hero .hero-content');
+            setTimeout(() => {
+                heroContent.innerHTML = `
+                    <h2>${textToDisplay.title}</h2>
+                    <p>${textToDisplay.description}</p>
+                `;
+                heroContent.style.opacity = '1';
+            }, 500); 
+        }
 
-  // Fade out
-  heroContent.style.opacity = '0';
+        
+        images.forEach((img, i) => {
+            const slide = document.createElement('div');
+            slide.className = 'slide';
+            slide.style.backgroundImage = `url(${img})`;
+            slide.style.opacity = i === 0 ? '1' : '0'; 
+            hero.appendChild(slide);
+            slides.push(slide);
 
-  setTimeout(() => {
-    // Szöveg frissítése
-    heroContent.innerHTML = `
-      <h2>${text.title}</h2>
-      <p>${text.description}</p>
-    `;
-    // Fade in
-    heroContent.style.opacity = '1';
-  }, 500); // 300ms, hogy legyen kis átmenet
+            
+            const pre = new Image();
+            pre.src = img;
+        });
+
+        
+        const controls = document.createElement('div');
+        controls.className = 'slide-controls';
+        controls.innerHTML = '<button id="prev">&#10094;</button><button id="next">&#10095;</button>';
+        hero.appendChild(controls);
+
+
+        
+        
+        setTimeout(() => {
+            
+            showSlide(firstCyclicIndex, false); 
+            
+            
+            let cycleIndex = firstCyclicIndex;
+
+            autoSlideInterval = setInterval(() => {
+                cycleIndex++; 
+
+                
+                if (cycleIndex > lastCyclicIndex) {
+                    cycleIndex = firstCyclicIndex;
+                }
+
+                
+                showSlide(cycleIndex, true); 
+            }, duration);
+            
+        }, duration);
+
+
+        
+        document.getElementById('prev').addEventListener('click', () => {
+            clearInterval(autoSlideInterval); 
+            
+            showSlide(current - 1, true); 
+        });
+        document.getElementById('next').addEventListener('click', () => {
+            clearInterval(autoSlideInterval);
+            
+            showSlide(current + 1, true);
+        });
+
+    
+    const toggle = document.querySelector('.nav-toggle');
+    const menu = document.getElementById('nav-menu');
+    if (toggle && menu) {
+       toggle.addEventListener('click', () => {
+          const isOpen = menu.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+       });
+
+       menu.addEventListener('click', (e) => {
+          const target = e.target;
+          if (target.tagName === 'A' || target.tagName === 'OPTION') {
+            menu.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
+          }
+       });
+    }
 }
-
-
-    document.getElementById('prev').addEventListener('click', () => {
-      showSlide(current - 1);
-    });
-    document.getElementById('next').addEventListener('click', () => {
-      showSlide(current + 1);
-    });
-
-    setInterval(() => {
-      showSlide(current + 1);
-    }, duration);
-  }
-
-  // Navigáció mobilon
-  const toggle = document.querySelector('.nav-toggle');
-  const menu = document.getElementById('nav-menu');
-  if (toggle && menu) {
-    toggle.addEventListener('click', () => {
-      const isOpen = menu.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-
-    menu.addEventListener('click', (e) => {
-      const target = e.target;
-      if (target.tagName === 'A' || target.tagName === 'OPTION') {
-        menu.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-      }
-    });
-  }
 })();
 </script>
 </body>
 </html>
-
-
-
