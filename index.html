@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <img src="logo.png" alt="Televox logo" class="logo">
+        <img src="logo2.png" alt="Televox logo" class="logo">
         <nav>
             <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">
                 <span class="hamburger" aria-hidden="true"></span>
@@ -17,8 +17,9 @@
 
             <div id="nav-menu" class="nav-menu" role="menu">
                 <a href="#" role="menuitem">Acasă</a>
-                <a href="#services" role="menuitem">Servicii</a>
+                <a href="#scurtistoric" role="menuitem">Scurt Istoric</a>
                 <a href="#contact" role="menuitem">Contact</a>
+				<a href="servicii.html" role="menuitem">Servicii</a>
                 <select name="languages" aria-label="Select language" onchange="if (this.value) location = this.value;">
                     <option value="" disabled selected>Select Language</option>
                     <option value="TeleVoxM.html">Magyar</option>
@@ -35,19 +36,60 @@
         </div>
     </section>
 
-    <section id="services" class="services" aria-label="Servicii">
-        <div class="service">
-            <h3>Internet</h3>
-            <p>Conexiune rapidă și stabilă la internet pentru acasă și afaceri.</p>
+    <section id="scurtistoric" class="scurtisctoric" aria-label="scurtistoric">
+    <div class="istoric">
+
+    <h2>Scurt istoric și prezentarea societății</h2>
+
+    <p><strong>SC TELEVOX SA</strong> este o societate pe acțiuni cu capital integral privat, înființată în anul <strong>1994</strong>. Cu sediul central în Târgu Mureș (str. Gheorghe Doja nr. 101), compania noastră s-a dezvoltat continuu, bazându-se pe o echipă stabilă de specialiști, având în prezent un număr mediu de 20 de angajați permanenți.</p>
+
+    <h3 >Experiență și Profesionalism</h3>
+    
+    <p>Temelia succesului nostru o constituie experiența vastă a echipei noastre. În domeniul <strong>automatizărilor industriale</strong>, specialiștii noștri beneficiază de o experiență de peste 15 ani, acumulată inițial la Institutul de Cercetări și Proiectări Electronice (ICPE) București – Filiala Tg. Mureș. Această expertiză ne-a permis să realizăm dezvoltări și invenții proprii, inclusiv:</p>
+    <ul style="background-color: #f9f9f9; padding: 15px 20px; border-left: 4px solid #2980b9; list-style-type: none;">
+        <li style="margin-bottom: 10px;">✓ Optimizări energetice și sisteme complexe pentru cuptoare cu arc electric;</li>
+        <li style="margin-bottom: 10px;">✓ Sisteme avansate de reglaj (temperatură, viteză, presiune, debit);</li>
+        <li>✓ Convertizoare statice de frecvență pentru motoare asincrone de mare putere (până la 1MW).</li>
+    </ul>
+
+    <h3 >Domenii de Activitate</h3>
+    
+    <p>De-a lungul anilor, portofoliul nostru s-a diversificat pentru a oferi soluții complete clienților noștri:</p>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div>
+            <h4 style="color: #c0392b;">Telecomunicații</h4>
+            <p style="font-size: 0.95em;">Proiectare și execuție de rețele (urbane, interurbane, fibră optică), instalare centrale telefonice, sisteme radio și mentenanță specializată.</p>
         </div>
-        <div class="service">
-            <h3>Telefon</h3>
-            <p>Linii telefonice de încredere, cu tarife avantajoase.</p>
+        <div>
+            <h4 style="color: #c0392b;">Sisteme de Securitate</h4>
+            <p style="font-size: 0.95em;">Proiectare, instalare și service pentru sisteme antiefracție și antiincendiu, asigurând protecția bunurilor și a persoanelor.</p>
         </div>
-        <div class="service">
-            <h3>Serviciu Clienți</h3>
-            <p>Asistență prietenoasă pentru clienți, disponibilă ori de câtea van avez nevoie.</p>
+        <div>
+            <h4 style="color: #c0392b;">Instalații Electrice</h4>
+            <p style="font-size: 0.95em;">Construcții-montaj și proiectare pentru rețele și echipamente electrice de 0.4kV.</p>
         </div>
+        <div>
+            <h4 style="color: #c0392b;">IT & Rețelistică</h4>
+            <p style="font-size: 0.95em;">Comercializare echipamente de calcul și realizarea de rețele structurate voce-date.</p>
+        </div>
+    </div>
+
+    <h3 >Angajamentul pentru Calitate</h3>
+    <p>Calitatea serviciilor noastre este certificată și recunoscută internațional. Încă din anul 2000, am implementat și menținut sistemul de management al calității, fiind certificați <strong>ISO 9001, ISO 14001 și OHSAS 18001</strong> (certificat SYSTEMA, recunoscut IQNET).</p>
+    
+    <p>Oferim soluții „la cheie”, garanție extinsă (12-36 luni) și consultanță tehnică gratuită, demonstrând angajamentul nostru pe termen lung față de parteneri.</p>
+
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+
+    <h4 style="text-align: center; text-transform: uppercase; letter-spacing: 1px; color: #7f8c8d;">Portofoliu de Clienți Recenți</h4>
+    
+    <div style="text-align: center; font-size: 0.9em; color: #555;">
+        <p>Suntem mândri să fi colaborat cu instituții și companii de prestigiu precum:</p>
+        <p style="font-style: italic;">UMFST Gheorghe Palade, Curtea de Apel Tg. Mureș, Termocentrala Iernut, Plaza M, RomAqua Bușteni, Spitalul Reghin, SMURD, Indlacto, Therezia și mulți alții.</p>
+    </div>
+
+</div>
     </section>
 
     <section id="contact" class="contact" aria-label="Contact">
@@ -69,11 +111,15 @@
         <div style="flex:1 1 300px;max-width:500px;">
             <h2 style="display:flex; flex:1; align-items:flex-start;">Utile</h2>
             <a href="PD.html" >Politica In Domeniul Calititatii</a>
+			</br>
+			<a href="Termenisiconditii.html" >Termeni şi conditii</a>
+			</br>
+			<a href="Politicadeconfidentialitate.html" >Politica De Confidentialitate</a>
         </div>
     </section>
 
     <footer>
-        <p>© 2025 Televox | Email: lorantd@televoxsa.ro | Tel: +40441607907</p>
+        <p>© 2025 Televox | Email: office@televoxsa.ro | Tel: +4044160790</p>
     </footer>
 
     <script>
