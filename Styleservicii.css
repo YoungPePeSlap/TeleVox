@@ -1,0 +1,114 @@
+:root{
+      --header-height: 64px;
+      --primary: #00264d;
+      --accent: #FF5722;
+      --secondary-accent: #1976D2; 
+      --dark: #001a33;
+	  --friendly-accent: #00bcd4;
+    }
+
+    * { box-sizing: border-box; }
+
+  body {
+      margin: 0;
+      font-family: "Times New Roman", serif;
+      background: #e6f0ff;
+      color: #333;
+      padding-top: var(--header-height);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+	  font-size:20px;
+    }
+
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--header-height);
+      z-index: 1000;
+    }
+
+    header img.logo {
+  /* Töröljük a felesleges és félrevezető 140%-os beállításokat. */
+  height: calc(var(--header-height) + 25px); /* 54px, ha a header 64px, így van egy kis padding is */
+  width: auto;                              /* Tartsa meg az arányokat */
+  max-width: 100%;
+  display: block;
+  object-fit: contain;                      /* Biztosítja, hogy az egész kép látszódjon */
+}
+	.hero {
+    position: relative;
+    height: 70vh;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-image: url("intro.png");
+    background-repeat: no-repeat; /* Megakadályozza az ismétlődést */
+    background-size: cover;      /* Kitölti a teljes elemet, megtartva az arányt */
+    background-position: center; /* Középre igazítja a képet */
+}
+	.hero .hero-content {
+		position: relative;
+		z-index: 2;
+		padding: 0 1rem;
+	}
+	.hero .hero-content h1{
+		font-size:50px;
+		font-family:roboto;
+	}
+	footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+	
+ .services {
+  display: grid;
+  /* 3 egyenlő oszlopot hoz létre */
+  grid-template-columns: repeat(3, 1fr); 
+  /* Távolság az elemek között (vízszintesen és függőlegesen is) */
+  gap: 30px; 
+  padding: 4rem 2rem;
+  background: white;
+  /* Opcionális: maximális szélesség, hogy nagy monitoron ne nyúljon szét nagyon */
+  max-width: 100%;
+  margin: 0 auto; /* Középre igazítja az egész blokkot */
+}
+
+    .service {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 10px; /* Lekerekített sarkok */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Finom árnyék */
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animáció */
+  
+  /* A flexbox tulajdonságokat törölhetjük, mert a szülő (grid) kezeli a méretet, 
+     kivéve ha a kártyán belüli tartalmat akarod igazítani */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Ez egy kis extra: ha ráviszed az egeret, kicsit megemelkedik */
+.service:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+    .service h3 {
+      color: var(--friendly-accent);
+    }
