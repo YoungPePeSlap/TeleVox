@@ -207,7 +207,7 @@
       }
     }
 
-    .services {
+    .scrutistoric {
       display: flex;
       justify-content: space-around;
       padding: 3rem 2rem;
@@ -216,15 +216,21 @@
       flex-wrap: wrap;
     }
 
-    .service {
-      flex: 1 1 240px;
-      max-width: 33%;
-      text-align: center;
-      min-width: 220px;
+    .istoric {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	  line-height: 1.6;
+	  color: #333;
+	  max-width: 100%;
+	  margin: 0 auto;
+	  padding: 20px;
+	  background-color: #fff;
     }
 
-    .service h3 {
-      color: var(--friendly-accent);
+    .istoric h2 {
+      color: #2c3e50; border-bottom: 2px solid #c0392b; padding-bottom: 10px; margin-bottom: 20px;
+    }
+	.istoric h3 {
+     color: #2980b9; margin-top: 30px;
     }
     
     .contact {
